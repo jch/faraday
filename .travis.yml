@@ -1,5 +1,4 @@
 before_script:
-  - "bundle exec rake test:generate_certs"
   - "nohup bundle exec ruby test/live_server.rb &"
   - "sleep 2"
 
