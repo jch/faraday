@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # gem 'debugger', :require => 'debugger'
 
 group :development do
+  gem 'thin'
   gem 'sinatra', '~> 1.2'
 end
 

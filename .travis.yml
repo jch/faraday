@@ -1,4 +1,5 @@
 before_script:
+  - "bundle exec rake test:generate_certs"
   - "nohup bundle exec ruby test/live_server.rb &"
   - "sleep 2"
 
@@ -11,6 +12,11 @@ language: ruby
 matrix:
   allow_failures:
     - rvm: ruby-head
+  exclude:
+    - rvm: jruby-18mode
+      env: LIVE=https://localhost:4567
+    - rvm: jruby-19mode
+      env: LIVE=https://localhost:4567
 
 rvm:
   - rbx-18mode

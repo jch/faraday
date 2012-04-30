@@ -57,8 +57,8 @@ if $0 == __FILE__
   if (ENV['LIVE'] || '').index('https') == 0
     require 'webrick/https'
 
-    key     = OpenSSL::PKey::RSA.new(File.open(File.expand_path("../../faraday.cert.key").read))
-    cert    = OpenSSL::X509::Certificate.new(File.open(File.expand_path("../../faraday.cert.key").read)
+    key     = OpenSSL::PKey::RSA.new(File.open(File.expand_path("../../faraday.cert.key", __FILE__)).read)
+    cert    = OpenSSL::X509::Certificate.new(File.open(File.expand_path("../../faraday.cert.crt", __FILE__)).read)
     options = {
       :SSLEnable       => true,
       :SSLPrivateKey   => key,
@@ -66,7 +66,9 @@ if $0 == __FILE__
       :SSLVerifyClient => OpenSSL::SSL::VERIFY_PEER
     }.merge(options)
   end
+
   Rack::Handler::WEBrick.run(FaradayTestServer, options) do |server|
     [:INT, :TERM].each { |sig| trap(sig) { server.stop } }
   end
 end
+
