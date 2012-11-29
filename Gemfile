@@ -17,7 +17,7 @@ end
 
 platforms :ruby do
   gem 'patron', '~> 0.4', '> 0.4.1'
-  gem 'typhoeus', '~> 0.3.3'
+  gem 'typhoeus', :git => 'https://github.com/jch/typhoeus', :branch => 'update-faraday-adapter-ssl-options'
 end
 
 platforms :jruby do
